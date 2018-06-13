@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using Crexi.WeatherForecast.Models.Weather;
-using Crexi.WeatherForecast.Services;
+using Crexi.WeatherForecast.Services.Interfaces;
 
 namespace Crexi.WeatherForecast.Controllers
 {

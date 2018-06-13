@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Crexi.WeatherForecast.App_Start;
 using Crexi.WeatherForecast.Models.Weather;
+using Crexi.WeatherForecast.Services.Interfaces;
 using OpenWeatherMap;
 
 namespace Crexi.WeatherForecast.Services

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Crexi.WeatherForecast.Models.Weather;
 
-namespace Crexi.WeatherForecast.Services
+namespace Crexi.WeatherForecast.Services.Interfaces
 {
 	public interface IWeatherService
 	{
