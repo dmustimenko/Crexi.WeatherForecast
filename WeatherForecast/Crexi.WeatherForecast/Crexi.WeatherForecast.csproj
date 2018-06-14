@@ -41,6 +41,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="APIXULib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\APIXUWeatherData.1.0.1\lib\APIXULib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -72,10 +76,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="OpenWeatherMap, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenWeatherMap.1.1.0\lib\netstandard1.1\OpenWeatherMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -139,15 +139,16 @@
     <Compile Include="Infrastructure\IServiceInterceptor.cs" />
     <Compile Include="Infrastructure\ServiceErrorEventArgs.cs" />
     <Compile Include="Infrastructure\ServiceInterceptor.cs" />
+    <Compile Include="Models\Weather\WeatherDayModel.cs" />
     <Compile Include="Services\Interfaces\IIpGeolocator.cs" />
     <Compile Include="Services\Interfaces\IUserIpRateLimiter.cs" />
     <Compile Include="Services\IpGeoDetails.cs" />
     <Compile Include="Models\ErrorResponse.cs" />
-    <Compile Include="Models\Weather\WeatherModel.cs" />
+    <Compile Include="Models\Weather\WeatherForecastModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Interfaces\IWeatherService.cs" />
     <Compile Include="Services\IpGeolocator.cs" />
-    <Compile Include="Services\OpenWeather.cs" />
+    <Compile Include="Services\ApiXuWeather.cs" />
     <Compile Include="Services\UserIpRateLimiter.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

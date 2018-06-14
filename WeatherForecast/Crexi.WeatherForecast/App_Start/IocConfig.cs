@@ -65,7 +65,7 @@ namespace Crexi.WeatherForecast.App_Start
 
 		private void RegisterWebServices()
 		{
-			_diContainer.Register<IWeatherService, OpenWeather>(new PerRequestLifeTime());
+			_diContainer.Register<IWeatherService, ApiXuWeather>(new PerRequestLifeTime());
 			_diContainer.Register<IIpGeolocator, IpGeolocator>(new PerRequestLifeTime());
 			_diContainer.Register<IUserIpRateLimiter, UserIpRateLimiter>(new PerRequestLifeTime());
 		}

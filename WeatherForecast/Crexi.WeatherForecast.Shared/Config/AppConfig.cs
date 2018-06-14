@@ -5,9 +5,9 @@ namespace Crexi.WeatherForecast.Shared.Config
 {
 	public class AppConfig
 	{
-		#region Open Weather Api
+		#region Weather Api
 
-		public static string OpenWeatherApiKey => ConfigurationManager.AppSettings["OpenWeather.ApiKey"];
+		public static string ApiXuKey => ConfigurationManager.AppSettings["ApiXu.Key"];
 
 		#endregion
 

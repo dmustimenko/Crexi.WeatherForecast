@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Crexi.WeatherForecast.Infrastructure;
 using Crexi.WeatherForecast.Models.Weather;
 using Crexi.WeatherForecast.Services.Interfaces;
@@ -26,7 +25,7 @@ namespace Crexi.WeatherForecast.Controllers
 		[HttpGet]
 		[Route("today")]
 		[Route("today/{city}")]
-		public WeatherModel Today(string city)
+		public WeatherForecastModel Today(string city)
 		{
 			return _weatherService.GetCurrentWeather(city);
 		}
@@ -34,7 +33,7 @@ namespace Crexi.WeatherForecast.Controllers
 		[HttpGet]
 		[Route("week")]
 		[Route("week/{city}")]
-		public IEnumerable<WeatherModel> Week(string city)
+		public WeatherForecastModel Week(string city)
 		{
 			return _weatherService.GetForecastOnWeek(city);
 		}
