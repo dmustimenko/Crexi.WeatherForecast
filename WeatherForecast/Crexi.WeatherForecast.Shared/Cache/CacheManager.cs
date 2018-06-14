@@ -2,7 +2,7 @@
 using System.Runtime.Caching;
 using System.Text;
 
-namespace Crexi.WeatherForecast.Infrastructure.Cache
+namespace Crexi.WeatherForecast.Shared.Cache
 {
 	public class CacheManager : ICacheManager
 	{
@@ -92,15 +92,9 @@ namespace Crexi.WeatherForecast.Infrastructure.Cache
 
 		private DateTime GetExpirationPoint(TimeSpan? customTimeToLiveInterval)
 		{
-			DateTime expiration;
-			if (customTimeToLiveInterval != null)
-			{
-				expiration = DateTime.UtcNow + customTimeToLiveInterval.GetValueOrDefault();
-			}
-			else
-			{
-				expiration = DateTime.UtcNow + _defaultCacheExpiration;
-			}
+			DateTime expiration = customTimeToLiveInterval != null
+				? DateTime.UtcNow + customTimeToLiveInterval.GetValueOrDefault()
+				: DateTime.UtcNow + _defaultCacheExpiration;
 
 			return expiration;
 		}

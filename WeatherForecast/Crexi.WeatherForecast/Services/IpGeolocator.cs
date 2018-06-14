@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using Crexi.WeatherForecast.App_Start;
 using Crexi.WeatherForecast.Common.Logger;
 using Crexi.WeatherForecast.Common.Serialization;
 using Crexi.WeatherForecast.Services.Interfaces;
+using Crexi.WeatherForecast.Shared.Config;
 
 namespace Crexi.WeatherForecast.Services
 {

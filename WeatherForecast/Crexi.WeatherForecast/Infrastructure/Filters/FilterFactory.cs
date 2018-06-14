@@ -8,7 +8,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Dependencies;
 using System.Web.Http.Filters;
 
-namespace Crexi.WeatherForecast.Infrastructure
+namespace Crexi.WeatherForecast.Infrastructure.Filters
 {
 	public class FilterFactory: IAuthorizationFilter, IExceptionFilter
 	{

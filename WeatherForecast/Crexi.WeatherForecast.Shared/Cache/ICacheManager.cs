@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Crexi.WeatherForecast.Infrastructure.Cache
+namespace Crexi.WeatherForecast.Shared.Cache
 {
 	public interface ICacheManager
 	{

@@ -1,6 +1,6 @@
-﻿using Crexi.WeatherForecast.App_Start;
+﻿using Crexi.WeatherForecast.Shared.Config;
 
-namespace Crexi.WeatherForecast.Infrastructure.Cache
+namespace Crexi.WeatherForecast.Shared.Cache
 {
 	public class CacheManagerFactory : ICacheManagerFactory
 	{

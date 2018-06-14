@@ -1,14 +1,12 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Filters;
 using Crexi.WeatherForecast.Models;
 using Crexi.WeatherForecast.Shared.Enums;
-using Crexi.WeatherForecast.Shared.Exceptions;
 
-namespace Crexi.WeatherForecast.Infrastructure
+namespace Crexi.WeatherForecast.Infrastructure.Filters
 {
 	public class ExceptionFilter : IExceptionFilter
 	{
@@ -21,19 +19,11 @@ namespace Crexi.WeatherForecast.Infrastructure
 
 		public Task ExecuteExceptionFilterAsync(HttpActionExecutedContext actionExecutedContext, CancellationToken cancellationToken)
 		{
-			var statusCode = HttpStatusCode.InternalServerError;
-			string message = "An error has occurred";
-
-			if (actionExecutedContext.Exception is ServiceException)
-			{
-				
-			}
-
 			actionExecutedContext.Response = actionExecutedContext
 				.Request
 				.CreateResponse(
-					statusCode,
-					new ErrorResponse(ResponseStatus.Error, message)
+					HttpStatusCode.InternalServerError,
+					new ErrorResponse(ResponseStatus.Error, "An error has occurred")
 				);
 
 			return Task.FromResult<object>(null);

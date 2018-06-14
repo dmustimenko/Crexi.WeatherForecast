@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace Crexi.WeatherForecast.App_Start
+namespace Crexi.WeatherForecast.Shared.Config
 {
 	public class AppConfig
 	{
@@ -13,13 +13,17 @@ namespace Crexi.WeatherForecast.App_Start
 
 		#region Access
 
-		public static int AccessTimeout => int.Parse(ConfigurationManager.AppSettings["Access.TimeoutInSec"]);
+		public static bool CheckIpCountry => bool.Parse(ConfigurationManager.AppSettings["Access.CheckIpCountry"]);
+
+		public static TimeSpan AccessTimePeriod => TimeSpan.Parse(ConfigurationManager.AppSettings["Access.TimePeriod"]);
+
 		public static int AccessAttemptCount => int.Parse(ConfigurationManager.AppSettings["Access.AttemptCount"]);
-		public static string[] AccessValidCountryCodes
+
+		public static string[] AccessBlockedCountryCodes
 		{
 			get
 			{
-				string countryCodes = ConfigurationManager.AppSettings["Access.ValidCountryCodes"];
+				string countryCodes = ConfigurationManager.AppSettings["Access.BlockedCountryCodes"];
 				return countryCodes.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 			}
 		}

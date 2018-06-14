@@ -1,19 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using Crexi.WeatherForecast.Infrastructure;
 using Crexi.WeatherForecast.Models.Weather;
 using Crexi.WeatherForecast.Services.Interfaces;
 
 namespace Crexi.WeatherForecast.Controllers
 {
 	[RoutePrefix("weather")]
-	public class WeatherController : ApiController
+	public class WeatherController : BaseController
 	{
+		#region IoC
+
 		private readonly IWeatherService _weatherService;
 
-		public WeatherController(IWeatherService weatherService)
+		public WeatherController(IServiceInterceptor serviceInterceptor, IWeatherService weatherService)
+			: base(serviceInterceptor)
 		{
 			_weatherService = weatherService;
 		}
+
+		#endregion
+
+		#region Weather
 
 		[HttpGet]
 		[Route("today")]
@@ -30,5 +38,7 @@ namespace Crexi.WeatherForecast.Controllers
 		{
 			return _weatherService.GetForecastOnWeek(city);
 		}
+
+		#endregion
 	}
 }

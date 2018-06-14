@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 using Crexi.WeatherForecast.App_Start;
-using Crexi.WeatherForecast.Infrastructure;
+using Crexi.WeatherForecast.Infrastructure.Filters;
 using Microsoft.Owin;
 using Owin;
 

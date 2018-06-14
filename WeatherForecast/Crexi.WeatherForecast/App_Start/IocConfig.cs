@@ -1,10 +1,17 @@
-﻿using System.Web.Http;
+﻿using System.ComponentModel.Design;
+using System.Web.Http;
 using System.Web.Http.Filters;
 using Crexi.WeatherForecast.Common.Logger;
+using Crexi.WeatherForecast.Dao.Entity;
+using Crexi.WeatherForecast.Dao.Impl;
+using Crexi.WeatherForecast.Dao.Interfaces;
 using Crexi.WeatherForecast.Infrastructure;
-using Crexi.WeatherForecast.Infrastructure.Cache;
+using Crexi.WeatherForecast.Infrastructure.Filters;
+using Crexi.WeatherForecast.Service.Impl;
 using Crexi.WeatherForecast.Services;
 using Crexi.WeatherForecast.Services.Interfaces;
+using Crexi.WeatherForecast.Shared.Cache;
+using Crexi.WeatherForecast.Shared.Interfaces;
 using LightInject;
 using IServiceContainer = LightInject.IServiceContainer;
 using ServiceContainer = LightInject.ServiceContainer;
@@ -13,6 +20,8 @@ namespace Crexi.WeatherForecast.App_Start
 {
 	public class IocConfig
 	{
+		public const int DbCommandTimeout = 300;
+
 		private IServiceContainer _diContainer;
 
 		public IServiceContainer InitContainer(HttpConfiguration config)
@@ -25,6 +34,8 @@ namespace Crexi.WeatherForecast.App_Start
 			RegisterCache();
 			RegisterFilters();
 			RegisterLogger();
+			RegisterWebServices();
+			RegisterDao();
 			RegisterServices();
 
 			return _diContainer;
@@ -52,10 +63,38 @@ namespace Crexi.WeatherForecast.App_Start
 			_diContainer.Register<ILogger>(factory => new Logger(factory.GetInstance<LoggerFactory>().CreateLogger()));
 		}
 
-		private void RegisterServices()
+		private void RegisterWebServices()
 		{
 			_diContainer.Register<IWeatherService, OpenWeather>(new PerRequestLifeTime());
 			_diContainer.Register<IIpGeolocator, IpGeolocator>(new PerRequestLifeTime());
+			_diContainer.Register<IUserIpRateLimiter, UserIpRateLimiter>(new PerRequestLifeTime());
+		}
+
+		private void RegisterDao()
+		{
+			_diContainer.Register(factory =>
+			{
+				var efContext = new WeatherForecastDb();
+				efContext.Database.CommandTimeout = DbCommandTimeout;
+				return efContext;
+			});
+
+			_diContainer.Register<IUserDao, UserDao>();
+		}
+
+		private void RegisterServices()
+		{
+			_diContainer.Register<IServiceInterceptor, ServiceInterceptor>(new PerScopeLifetime());
+
+			RegisterService<IUserService, UserService>();
+		}
+
+		private void RegisterService<TService, TImplementation>()
+			where TImplementation : class, TService
+			where TService : class
+		{
+			_diContainer.Register<TService, TImplementation>();
+			_diContainer.Intercept(sr => sr.ServiceType == typeof(TService), sf => sf.GetInstance<IServiceInterceptor>());
 		}
 	}
 }
