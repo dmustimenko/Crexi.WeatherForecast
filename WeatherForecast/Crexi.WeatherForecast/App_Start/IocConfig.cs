@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.Design;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Filters;
 using Crexi.WeatherForecast.Common.Logger;
 using Crexi.WeatherForecast.Dao.Entity;
