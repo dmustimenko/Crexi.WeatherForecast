@@ -65,20 +65,9 @@ namespace Crexi.WeatherForecast.App_Start
 		private void RegisterWebServices()
 		{
 			_diContainer.Register<IWeatherService, ApiXuWeather>(new PerRequestLifeTime());
-			_diContainer.Register<IIpGeolocator, IpGeolocator>(new PerRequestLifeTime());
-			_diContainer.Register<IUserIpRateLimiter, UserIpRateLimiter>(new PerRequestLifeTime());
-		}
 
-		private void RegisterDao()
-		{
-			_diContainer.Register(factory =>
-			{
-				var efContext = new WeatherForecastDb();
-				efContext.Database.CommandTimeout = DbCommandTimeout;
-				return efContext;
-			});
-
-			_diContainer.Register<IUserDao, UserDao>();
+			RegisterService<IUserIpRateLimiter, UserIpRateLimiter>();
+			RegisterService<IIpGeolocator, IpGeolocator>();
 		}
 
 		private void RegisterServices()
@@ -94,6 +83,18 @@ namespace Crexi.WeatherForecast.App_Start
 		{
 			_diContainer.Register<TService, TImplementation>();
 			_diContainer.Intercept(sr => sr.ServiceType == typeof(TService), sf => sf.GetInstance<IServiceInterceptor>());
+		}
+
+		private void RegisterDao()
+		{
+			_diContainer.Register(factory =>
+			{
+				var efContext = new WeatherForecastDb();
+				efContext.Database.CommandTimeout = DbCommandTimeout;
+				return efContext;
+			});
+
+			_diContainer.Register<IUserDao, UserDao>();
 		}
 	}
 }

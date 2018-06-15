@@ -49,7 +49,6 @@
     <Compile Include="Cache\ICacheManagerFactory.cs" />
     <Compile Include="Config\AppConfig.cs" />
     <Compile Include="Enums\ResponseStatus.Enum.cs" />
-    <Compile Include="Exceptions\ServiceException.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

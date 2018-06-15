@@ -6,6 +6,10 @@ namespace Crexi.WeatherForecast.Services.Interfaces
 	{
 		WeatherForecastModel GetCurrentWeather(string city);
 
+		WeatherForecastModel GetCurrentWeather(string latitude, string longitude);
+
 		WeatherForecastModel GetForecastOnWeek(string city);
+
+		WeatherForecastModel GetForecastOnWeek(string latitude, string longitude);
 	}
 }

@@ -49,14 +49,10 @@ namespace Crexi.WeatherForecast.Common.Logger
 				_logger.Warn(message, exception);
 			}
 		}
+
 		public void Warn(string message, params object[] args)
 		{
 			_logger.WarnFormat(CultureInfo.InvariantCulture, message, args);
-		}
-
-		public void Debug(string message, params object[] args)
-		{
-			_logger.DebugFormat(CultureInfo.InvariantCulture, message, args);
 		}
 	}
 }

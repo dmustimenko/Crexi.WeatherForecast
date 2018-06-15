@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Crexi.WeatherForecast.Services
+namespace Crexi.WeatherForecast.Models.IpGeolocator
 {
 	public class IpGeoDetails
 	{

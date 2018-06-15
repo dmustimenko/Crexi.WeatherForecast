@@ -1,6 +1,5 @@
 ﻿using System;
 using Crexi.WeatherForecast.Common.Logger;
-using Crexi.WeatherForecast.Shared.Exceptions;
 using LightInject.Interception;
 
 namespace Crexi.WeatherForecast.Infrastructure
@@ -24,18 +23,6 @@ namespace Crexi.WeatherForecast.Infrastructure
 			}
 			catch (Exception exception)
 			{
-				var serviceException = exception as ServiceException;
-				var eventArgs = serviceException == null
-					? new ServiceErrorEventArgs { Error = exception, ErrorMessage = "Service error has occurred" }
-					: new ServiceErrorEventArgs { Error = exception };
-
-				ErrorOccured(this, eventArgs);
-
-				if (!eventArgs.Handled)
-				{
-					throw;
-				}
-
 				_logger.Error(exception);
 
 				var returnType = invocationInfo.Method.ReturnType;

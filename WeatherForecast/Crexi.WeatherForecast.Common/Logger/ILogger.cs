@@ -17,7 +17,5 @@ namespace Crexi.WeatherForecast.Common.Logger
 		void Warn(string message, Exception exception);
 
 		void Warn(string message, params object[] args);
-
-		void Debug(string message, params object[] args);
 	}
 }

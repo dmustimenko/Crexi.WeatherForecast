@@ -21,9 +21,21 @@ namespace Crexi.WeatherForecast.Services
 			return MapWeatherModel(weather);
 		}
 
+		WeatherForecastModel IWeatherService.GetCurrentWeather(string latitude, string longitude)
+		{
+			var weather = GetForecastByCoordinates(latitude, longitude, Days.One);
+			return MapWeatherModel(weather);
+		}
+
 		WeatherForecastModel IWeatherService.GetForecastOnWeek(string city)
 		{
 			var weather = GetForecastByCityName(city, Days.Seven);
+			return MapWeatherModel(weather);
+		}
+
+		WeatherForecastModel IWeatherService.GetForecastOnWeek(string latitude, string longitude)
+		{
+			var weather = GetForecastByCoordinates(latitude, longitude, Days.Seven);
 			return MapWeatherModel(weather);
 		}
 
@@ -46,6 +58,11 @@ namespace Crexi.WeatherForecast.Services
 		private WeatherModel GetForecastByCityName(string city, Days days)
 		{
 			return _client.GetWeatherData(AppConfig.ApiXuKey, GetBy.CityName, city, days);
+		}
+
+		private WeatherModel GetForecastByCoordinates(string latitude, string longitude, Days days)
+		{
+			return _client.GetWeatherDataByLatLong(AppConfig.ApiXuKey, latitude, longitude, days);
 		}
 	}
 }

@@ -131,7 +131,6 @@
   <ItemGroup>
     <Compile Include="App_Start\IocConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\WeatherController.cs" />
     <Compile Include="Infrastructure\Filters\AuthorizationFilter.cs" />
     <Compile Include="Infrastructure\Filters\ExceptionFilter.cs" />
@@ -142,7 +141,7 @@
     <Compile Include="Models\Weather\WeatherDayModel.cs" />
     <Compile Include="Services\Interfaces\IIpGeolocator.cs" />
     <Compile Include="Services\Interfaces\IUserIpRateLimiter.cs" />
-    <Compile Include="Services\IpGeoDetails.cs" />
+    <Compile Include="Models\IpGeolocator\IpGeoDetails.cs" />
     <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Models\Weather\WeatherForecastModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
